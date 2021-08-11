@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
            binding.editTextPassword.text.toString()
            )
 
-        val intent = Intent(this, MainWall::class.java)
+        val intent = Intent(this, LoginPage::class.java)
         intent.putExtra("User", user)
         startActivity(intent)
     }

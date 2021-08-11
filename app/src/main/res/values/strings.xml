@@ -12,4 +12,12 @@
     <string name="activity_main_email_hint">Email</string>
     <string name="activity_main_password_hint">Password</string>
     <string name="activity_main_create_account_hint">Create Account</string>
+    <string name="landing_page_stym_name">Stym name</string>
+    <string name="landing_page_description_stym">this is description of the Stym folder</string>
+    <string name="landing_page_date">12/14/2022</string>
+    <string name="landing_page_tracks">45 tracks</string>
+    <string name="username">Username</string>
+    <string name="login_page_login">login</string>
+    <string name="landing_page_share">SHARE</string>
+    <string name="stym_item_artwork_description">Stym artwork</string>
 </resources>
