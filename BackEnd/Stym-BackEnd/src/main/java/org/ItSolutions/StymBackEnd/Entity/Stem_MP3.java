@@ -1,30 +1,33 @@
-package Entity;
+package org.ItSolutions.StymBackEnd.Entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table (name = "Stem_MP3")
 public class Stem_MP3 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Stem_MP3Id")
-    private long stemMp3Id;
+    private Integer stemMp3Id;
 
-    @Column(name = "mp3Id")
-    private long mp3Id;
+    @Column(name = "mp3Id", insertable = false, updatable = false)
+    private Integer mp3Id;
 
-    @Column(name = "StemId")
-    private long stymId;
+    @Column(name = "StemId", insertable = false, updatable = false, nullable = false)
+    private Integer stemId;
 
     @Column(name = "libraryId")
-    private long libraryId;
+    private Integer libraryId;
 
     @ManyToOne
     @JoinColumn(name = "LibraryId", nullable = false, insertable = false, updatable = false)
-    private long library;
+    private Library library;
 
     @OneToOne
     @JoinColumn(name = "mp3Id", referencedColumnName = "mp3Id")

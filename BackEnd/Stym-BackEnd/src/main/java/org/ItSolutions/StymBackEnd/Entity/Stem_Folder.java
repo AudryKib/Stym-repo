@@ -1,19 +1,22 @@
-package Entity;
+package org.ItSolutions.StymBackEnd.Entity;
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table (name = "Stem_Folder")
-@Data
+@Getter
+@Setter
 public class Stem_Folder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "StemId")
-    private long stemId;
+    private Integer stemId;
 
     @Column(name = "Name")
     private String name;

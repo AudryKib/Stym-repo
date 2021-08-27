@@ -1,6 +1,6 @@
-package Entity;
+package org.ItSolutions.StymBackEnd.Entity;
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -8,14 +8,17 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="Library")
 public class Library {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "LibraryId")
-    private long libraryId;
+    private Integer libraryId;
 
     @Column(name = "Name")
     private String name;
@@ -34,7 +37,7 @@ public class Library {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "library")
     private Set<Stem_MP3> Stems;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "Accountid", nullable = false, insertable = false, updatable = false)
     private Account account;
 }

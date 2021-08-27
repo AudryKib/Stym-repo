@@ -1,18 +1,21 @@
-package Entity;
+package org.ItSolutions.StymBackEnd.Entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="User")
-@Data
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="UserId")
-    private long userId;
+    private Integer userId;
 
     @Column(name="FirstName")
     private String firstName;
@@ -38,6 +41,6 @@ public class User {
     @Column(name="PhoneNo")
     private String phoneNo;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "AccountId")
+    @OneToMany( mappedBy = "userid", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Account> accounts;
 }

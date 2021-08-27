@@ -1,19 +1,22 @@
-package Entity;
+package org.ItSolutions.StymBackEnd.Entity;
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table (name = "MP3_Demo")
 public class MP3_Demo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mp3Id")
-    private long mp3Id;
+    private Integer mp3Id;
 
     @Column(name = "name")
     private String name;
@@ -26,7 +29,7 @@ public class MP3_Demo {
     private String mp3;
 
     @Column(name = "AccountId")
-    private long accountId;
+    private Integer accountId;
 
 
     @OneToOne  (mappedBy = "mp3Demo")
