@@ -11,6 +11,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="Library")
@@ -32,12 +33,12 @@ public class Library {
     private Date lastAccessDate;
 
     @Column(name = "Accountid")
-    private long accountId;
+    private Integer accountId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "library")
     private Set<Stem_MP3> Stems;
 
     @ManyToOne
-    @JoinColumn(name = "Accountid", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name ="accountid", referencedColumnName = "userid",nullable = false, insertable = false, updatable = false)
     private Account account;
 }

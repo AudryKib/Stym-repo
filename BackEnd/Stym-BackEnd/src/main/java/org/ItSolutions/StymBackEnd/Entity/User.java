@@ -8,6 +8,7 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name="User")
 @Getter
 @Setter
@@ -22,6 +23,9 @@ public class User {
 
     @Column(name="LastName")
     private String lastName;
+
+    @Column(name = "picture")
+    private String picture;
 
     @Column(name="Company")
     private String company;

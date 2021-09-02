@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table (name = "Stem_MP3")
@@ -26,7 +27,7 @@ public class Stem_MP3 {
     private Integer libraryId;
 
     @ManyToOne
-    @JoinColumn(name = "LibraryId", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "libraryId", referencedColumnName ="libraryId", nullable = false, insertable = false, updatable = false)
     private Library library;
 
     @OneToOne

@@ -12,6 +12,7 @@ import java.sql.Date;
 @Table (name = "Stem_Folder")
 @Getter
 @Setter
+@Builder
 public class Stem_Folder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
