@@ -1,6 +1,7 @@
 package org.ItSolutions.StymBackEnd.Entity;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -25,6 +26,7 @@ public class Stem {
     private String name;
 
     @Column(name="creationDate")
+    @CreationTimestamp
     private Date creationDate;
 
     @Column(name="numberOfTracks")

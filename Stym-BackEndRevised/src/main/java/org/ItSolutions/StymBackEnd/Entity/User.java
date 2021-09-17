@@ -22,6 +22,9 @@ public class User {
     @Column(name="firstName")
     private String firstName;
 
+    @Column(name="image")
+    private String image;
+
     @Column(name="lastName")
     private String lastName;
 

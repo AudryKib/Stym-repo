@@ -1,4 +1,8 @@
 package org.ItSolutions.StymBackEnd.Dao;
 
-public interface UserRepository {
+import org.ItSolutions.StymBackEnd.Entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+
 }
