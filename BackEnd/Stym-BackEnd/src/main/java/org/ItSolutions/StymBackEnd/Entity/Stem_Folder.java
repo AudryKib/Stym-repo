@@ -7,8 +7,6 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table (name = "Stem_Folder")
 @Getter
 @Setter
@@ -26,6 +24,8 @@ public class Stem_Folder {
     @CreationTimestamp
     private Date creationDate;
 
+
+
     @Column(name = "NumberofTracks")
     private int numberOfTracks;
 
@@ -40,4 +40,18 @@ public class Stem_Folder {
 
     @OneToOne(mappedBy = "stemFolder")
     private Stem_MP3 stemmp3;
+
+    public Stem_Folder() {
+    }
+
+    public Stem_Folder(Integer stemId, String name, Date creationDate, int numberOfTracks, String stym, String artWork, String description, Stem_MP3 stemmp3) {
+        this.stemId = stemId;
+        this.name = name;
+        this.creationDate = creationDate;
+        this.numberOfTracks = numberOfTracks;
+        this.stym = stym;
+        this.artWork = artWork;
+        this.description = description;
+        this.stemmp3 = stemmp3;
+    }
 }

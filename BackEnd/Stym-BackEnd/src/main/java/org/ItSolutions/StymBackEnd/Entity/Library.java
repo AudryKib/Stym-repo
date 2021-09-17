@@ -10,10 +10,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
 @Table(name="Library")
 public class Library {
     @Id
@@ -41,4 +39,17 @@ public class Library {
     @ManyToOne
     @JoinColumn(name ="accountid", referencedColumnName = "userid",nullable = false, insertable = false, updatable = false)
     private Account account;
+
+    public Library(Integer libraryId, String name, Date creationDate, Date lastAccessDate, Integer accountId, Set<Stem_MP3> stems, Account account) {
+        this.libraryId = libraryId;
+        this.name = name;
+        this.creationDate = creationDate;
+        this.lastAccessDate = lastAccessDate;
+        this.accountId = accountId;
+        Stems = stems;
+        this.account = account;
+    }
+
+    public Library() {;
+    }
 }

@@ -47,7 +47,7 @@ insert into Account (user_id, Username, Password, Email, Category) values (4, 'k
 insert into Account (user_id, Username, Password, Email, Category) values (5, 'bhysom5', 'mhYNpl4', 'tdossantos5@examiner.com', 'creator');
 insert into Account (user_id, Username, Password, Email, Category) values (6, 'wdeluna6', 'Ynxo5JFYu6', 'smooreed6@dagondesign.com', 'client');
 
-select * from Account
+select * from Account;
 
 
 insert into Account (UserId, Username, Password, Email, Category) values (11, 'mwaterland7', 'Zygys6lw53', 'cmarcq7@example.com', 'client');
@@ -105,21 +105,24 @@ insert into Stem_Folder (Stem_Id, Name, Creation_Date, Stem, Art_Work, Descripti
 insert into Stem_Folder (Stem_Id, Name, Creation_Date, Stem, Art_Work, Description) values (9, 'Viva', '2021-06-05', 'video/x-msvideo', 'http://dummyimage.com/201x100.png/cc0000/ffffff', 'Drainage of Left Shoulder Tendon, Open Approach');
 insert into Stem_Folder (Stem_Id, Name, Creation_Date, Stem, Art_Work, Description) values (10, 'Zoolab', '2021-06-30', 'image/jpeg', 'http://dummyimage.com/184x100.png/cc0000/ffffff', 'Change Splint on Right Thumb');
 
-insert into Stem_MP3 (Stem_MP3Id, Mp3Id, StemId, libraryId) values (1, 3, 1, 1);
-insert into Stem_MP3 (Stem_MP3Id, Mp3Id, StemId, libraryId) values (2, 1, 2, 10);
-insert into Stem_MP3 (Stem_MP3Id, Mp3Id, StemId, libraryId) values (3, 6, 8, 3);
-insert into Stem_MP3 (Stem_MP3Id, Mp3Id, StemId, libraryId) values (4, 4, 4, 4);
-insert into Stem_MP3 (Stem_MP3Id, Mp3Id, StemId, libraryId) values (5, 5, 3, 2);
+use Stym2;
+insert into Stem_MP3 (Stem_MP3Id, Mp3Id, Stem_Id, library_Id) values (1, 3, 1, 1);
+insert into Stem_MP3 (Stem_MP3Id, Mp3Id, Stem_Id, library_Id) values (2, 1, 2, 2);
+insert into Stem_MP3 (Stem_MP3Id, Mp3Id, Stem_Id, library_Id) values (3, 6, 8, 3);
+insert into Stem_MP3 (Stem_MP3Id, Mp3Id, Stem_Id, library_Id) values (4, 4, 4, 4);
+insert into Stem_MP3 (Stem_MP3Id, Mp3Id, Stem_Id, library_Id) values (5, 5, 3, 5);
+insert into Stem_MP3 (Stem_MP3Id, Mp3Id, Stem_Id, library_Id) values (6, 2, 6, 6);
 
 
 
 insert into Stem_MP3 (Stem_MP3Id, StemId, libraryId) values (6, 5, 5);
+
 insert into Stem_MP3 (Stem_MP3Id, StemId, libraryId) values (7, 9, 9);
-insert into Stem_MP3 (Stem_MP3Id, Mp3Id, StemId, libraryId) values (8, 2, 6, 6);
+
 insert into Stem_MP3 (Stem_MP3Id, StemId, libraryId) values (9, 10, 8);
 insert into Stem_MP3 (Stem_MP3Id, StemId, libraryId) values (10, 7, 7);
 
-select * from Stym.Stem_MP3;
+select * from Stym2.Stem_MP3;
 
 select * from Stym2.stem_folder;
 
@@ -141,10 +144,43 @@ alter table Stym.library drop column library_id;
 alter table Stym.library drop column creation_date;
 alter table Stym.library drop column last_accessdate;
 
-select * from Stym.stem_mp3;
+select * from Stym2.stem_mp3;
+select * from Stym2.library;
+
 
 alter table stem_mp3 drop column library_id;
 alter table stem_mp3 drop column stem_id;
 
-select * from Stym.library;
 
+/*
+Query to retrieve the MP3 and Stem associated to account id 
+*/
+use Stym2;
+select t.stem, t.c_date, t.description, t.tracks from 
+library l inner join 
+(select f.name as stem, f.creation_date as c_date , 
+f.description as description, f.numberof_tracks as tracks, s.library_id
+from stem_mp3 as s 
+inner join stem_folder as f 
+on 	s.stem_id = f.stem_id) as t 
+on l.library_id = t.library_id
+where accountid = 2;
+
+/*
+Think about making this a stored procedure
+*/
+use Stym2;
+select t.stem, t.mp3, t.c_date, t.description, t.tracks from 
+library l inner join 
+(select d.name as mp3, f.name as stem, f.creation_date as c_date , 
+f.description as description, f.numberof_tracks as tracks, s.library_id
+from stem_mp3 as s 
+inner join mp3_demo as d
+on s.mp3id = d.mp3id
+inner join stem_folder as f 
+on 	s.stem_id = f.stem_id) as t 
+on l.library_id = t.library_id
+where accountid = 6;
+
+
+		
