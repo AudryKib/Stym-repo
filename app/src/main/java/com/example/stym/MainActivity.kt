@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.example.stym.databinding.ActivityMainBinding
+import models.User
 
 
 class MainActivity : AppCompatActivity() {

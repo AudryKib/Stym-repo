@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stym.databinding.StymLibraryItemsBinding
+import models.Stym
 
 class StymAdapter(private val stymList: Array<Stym> ): RecyclerView.Adapter<StymAdapter.ProjectViewHolder>() {
 

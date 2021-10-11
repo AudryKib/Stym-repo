@@ -1,4 +1,4 @@
-package com.example.stym
+package models
 
 import java.io.Serializable
 

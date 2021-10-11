@@ -4,8 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.stym.databinding.ActivityMainBinding
 import com.example.stym.databinding.ActivityMainWallBinding
+import models.User
 
 
 class MainWall : AppCompatActivity() {

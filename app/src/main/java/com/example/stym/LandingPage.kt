@@ -2,9 +2,9 @@ package com.example.stym
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.stym.databinding.ActivityLandingPageBinding
+import models.Stym
 
 class LandingPage : AppCompatActivity() {
 
