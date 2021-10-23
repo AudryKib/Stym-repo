@@ -1,6 +1,8 @@
 package com.example.stym
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +11,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.stym.databinding.ActivityLandingPageBinding
+import com.example.stym.databinding.StymLibraryItemsBinding
+import models.Message
 import models.Stym
 
 private const val TAG = "LandingPage"
 class LandingPage : AppCompatActivity() {
 
     private lateinit var binding: ActivityLandingPageBinding
+    private lateinit var binding2: StymLibraryItemsBinding
     private lateinit var viewModel: LandingPageViewModel
     private lateinit var stymAdapter: StymAdapter
     private val stemList = mutableListOf<Stym>()
@@ -23,6 +28,7 @@ class LandingPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLandingPageBinding.inflate(layoutInflater)
+        binding2 = StymLibraryItemsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 //        val Styms = arrayOf(
@@ -91,14 +97,27 @@ class LandingPage : AppCompatActivity() {
         viewModel.getStems()
 
        // call press share function
-     //   onPressShare()
 
+        binding2.buttonCreateShare.setOnClickListener {
+            onPressShare()
+        }
 
     }
 /**
  * When a user presses the share button
  * */
     private fun onPressShare() {
-        TODO("Not yet implemented")
+    val message = Message("319-471-4126","Cloud 9 by Swiff")
+    val messagePreviewText = """
+        Heads up! Something beatiful is coming your way!
+        you're receiving ${message.stymName} on Stym App
+        click on the link below to access your Gift.
+    """.trimIndent()
+        //Send message intent
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("smsto: ${message.contactNumber}")  // This ensures only SMS apps respond
+            putExtra("sms_body", messagePreviewText)
+        }
+        startActivity(intent)
     }
 }
