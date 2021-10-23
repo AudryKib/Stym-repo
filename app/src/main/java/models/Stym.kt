@@ -9,6 +9,6 @@ val name : String,
 val creationDate : String,
 val numberOfTracks : Int,
 val stym : String,
-val artWork : Int,
-val Description: String
-): Serializable
+val artWork : String,
+val description: String
+)

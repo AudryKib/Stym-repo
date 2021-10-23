@@ -1,5 +1,6 @@
 package com.example.stym
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import models.Stym
 
-class StymAdapter(private val stymList: Array<Stym> ): RecyclerView.Adapter<StymAdapter.ProjectViewHolder>() {
+class StymAdapter(private val context: Context, private val stymList: List<Stym> ): RecyclerView.Adapter<StymAdapter.ProjectViewHolder>() {
 
 //lateinit var binding: StymLibraryItemsBinding
 
@@ -18,21 +19,25 @@ class StymAdapter(private val stymList: Array<Stym> ): RecyclerView.Adapter<Stym
          val textViewDescription : TextView = itemView.findViewById(R.id.text_view_description)
          val textViewDate : TextView = itemView.findViewById(R.id.text_view_date)
          val textViewTracks : TextView = itemView.findViewById(R.id.text_view_tracks)
+
+         fun bind(stym: Stym){
+             textViewName.text = stym.name
+             textViewDescription.text = stym.description
+             textViewDate.text = stym.creationDate
+             textViewTracks.text = stym.numberOfTracks.toString()
+
+         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
-     val view=LayoutInflater.from(parent.context).inflate(R.layout.stym_library_items, parent, false)
+     val view=LayoutInflater.from(context).inflate(R.layout.stym_library_items, parent, false)
         return ProjectViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
-           val currentStym = stymList[position]
-            holder.icon.setImageResource(currentStym.artWork)
-            holder.textViewName.text = currentStym.name
-            holder.textViewDescription.text = currentStym.Description
-            holder.textViewDate.text = currentStym.creationDate
-            holder.textViewTracks.text = currentStym.numberOfTracks.toString()
+        holder.bind(stymList[position])
     }
+            //holder.icon.setImageResource(currentStym.artWork)
 
     override fun getItemCount() = stymList.size
 }

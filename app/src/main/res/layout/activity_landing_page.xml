@@ -11,3 +11,4 @@
     android:id="@+id/recycler_view_landing_page"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     />
+

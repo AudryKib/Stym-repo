@@ -1,3 +1,5 @@
 package models
 
-data class NestedJsonModel()
+data class NestedJsonModel(
+    var stems: List<Stym>?
+)
